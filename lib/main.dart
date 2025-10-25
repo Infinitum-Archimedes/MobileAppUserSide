@@ -14,6 +14,7 @@ import 'package:student_health_tracker/notification_center/notification_page_rou
 import 'package:student_health_tracker/startup/splash_page.dart';
 import 'global_content/dynamic_content/database.dart';
 import 'global_content/dynamic_content/stream_signal.dart';
+import 'package:student_health_tracker/startup/home_page.dart';
 
 /*
 Dart entrypoint for app.
@@ -69,7 +70,7 @@ class MyApp extends StatelessWidget {
                   builder: (context, snapshot) {
                     // starting page of the application
                     // set to splashpage
-                    return SplashPage();
+                    return const HomePage();
                   }));
         });
   }

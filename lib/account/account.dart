@@ -6,6 +6,7 @@ import '../../globals/database.dart';
 import '../../globals/static/custom_widgets/icon_circle.dart';
 import '../../globals/static/build_context_extension.dart';
 import '../account/avatar.dart';
+import '../../globals/account_service.dart';
 
 /*
 Account Page will be accessible by button in top right
@@ -36,11 +37,8 @@ class _AccountState extends State<Account> {
 
     try {
       final userId = supabase.auth.currentSession!.user.id;
-      final data = await supabase
-          .from('profiles')
-          .select()
-          .eq('id', userId)
-          .single();
+      final data =
+          await supabase.from('profiles').select().eq('id', userId).single();
       _avatarUrl = (data['avatar_url'] ?? '') as String;
     } catch (error) {
       if (mounted) {

@@ -44,7 +44,7 @@ class WelcomePage extends StatelessWidget {
             SizedBox(
               width: mediaQuery.size.width,
               height: mediaQuery.size.width,
-              child: Image.asset('assets/image/logo2.png'),
+              child: Image.asset('assets/images/logo2.png'),
             ),
             const SizedBox(height: 25),
             const Text("Create an account, sign in, or continue as a guest."),
@@ -86,7 +86,7 @@ class WelcomePage extends StatelessWidget {
                 children: [
                   Expanded(
                       child:
-                      Container(height: 2.5, color: colorScheme.onSurface)),
+                          Container(height: 2.5, color: colorScheme.onSurface)),
                   Text(" or ",
                       style: TextStyle(
                           color: colorScheme.onSurface,
@@ -95,14 +95,14 @@ class WelcomePage extends StatelessWidget {
                           fontFamily: 'ProstoOne')),
                   Expanded(
                       child:
-                      Container(height: 2.5, color: colorScheme.onSurface)),
+                          Container(height: 2.5, color: colorScheme.onSurface)),
                 ],
               ),
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                    context, GlobalWidgets.swipePage(const Signup(), appBar: true));
+                Navigator.push(context,
+                    GlobalWidgets.swipePage(const Signup(), appBar: true));
               },
               style: ElevatedButton.styleFrom(
                   side: BorderSide(color: colorScheme.onSurface, width: 1),
@@ -143,7 +143,7 @@ class WelcomePage extends StatelessWidget {
       if (context.mounted) {
         Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (context) => const HomePage()),
-              (route) => false,
+          (route) => false,
         );
       }
     } on AuthException catch (error) {
@@ -152,5 +152,4 @@ class WelcomePage extends StatelessWidget {
       }
     }
   }
-
 }

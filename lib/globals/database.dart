@@ -16,7 +16,9 @@ class DataBase {
   // sample: can define a peice of data that is consistent, and then update the variable
   // static List<Map<String, dynamic>> ideas = [];
 
-  static Future<void> init() async {}
+  static Future<void> init() async {
+    await _tryInitialize();
+  }
 
   // init supabase
   static Future<bool> _tryInitialize() async {

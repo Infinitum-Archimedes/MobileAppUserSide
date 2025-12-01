@@ -105,10 +105,10 @@ flutter:
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
 
-    - assets/image/logo.png
-    - assets/image/logo2.png
-    - assets/image/loading.gif
-    - assets/image/placeholder.png
+    - assets/images/logo.png
+    - assets/images/logo2.png
+    - assets/images/loading.gif
+    - assets/images/placeholder.png
 
   fonts:
     - family: Delius

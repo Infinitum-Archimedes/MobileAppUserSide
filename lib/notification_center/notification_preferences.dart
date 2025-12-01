@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../global_content/static_content/custom_themes.dart';
+import '../../globals/static/custom_themes.dart';
 
 /*
 Initially select notification preferences before going to notification center.

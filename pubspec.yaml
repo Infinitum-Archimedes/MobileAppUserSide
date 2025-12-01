@@ -73,6 +73,7 @@ dependencies:
   timezone: any
   flutter_map: ^4.0.0
   latlong2: ^0.8.2
+  google_sign_in: ^7.2.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

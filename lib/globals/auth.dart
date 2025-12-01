@@ -2,12 +2,12 @@ import 'dart:convert';
 import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
-import 'package:student_health_tracker/global_content/static_content/global_widgets.dart';
+import 'package:student_health_tracker/globals/static/global_widgets.dart';
 import 'package:student_health_tracker/main.dart';
 import 'package:student_health_tracker/startup/splash_page.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import '../../Startup/home_page.dart';
+import '../Startup/home_page.dart';
 import 'database.dart';
 
 /*

@@ -8,12 +8,12 @@ import 'package:student_health_tracker/map_page/map_page.dart';
 import 'package:student_health_tracker/chat/chat.dart';
 
 // in project pages
-import 'package:student_health_tracker/global_content/static_content/custom_themes.dart';
+import 'package:student_health_tracker/globals/static/custom_themes.dart';
 import 'package:student_health_tracker/notification_center/notification_center.dart';
 import 'package:student_health_tracker/notification_center/notification_page_router.dart';
 import 'package:student_health_tracker/startup/splash_page.dart';
-import 'global_content/dynamic_content/database.dart';
-import 'global_content/dynamic_content/stream_signal.dart';
+import 'globals/database.dart';
+import 'globals/stream_signal.dart';
 import 'package:student_health_tracker/startup/home_page.dart';
 
 /*
@@ -70,7 +70,7 @@ class MyApp extends StatelessWidget {
                   builder: (context, snapshot) {
                     // starting page of the application
                     // set to splashpage
-                    return const HomePage();
+                    return SplashPage();
                   }));
         });
   }

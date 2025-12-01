@@ -1,10 +1,8 @@
 // packages
 import 'package:flutter/material.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:url_launcher/url_launcher.dart'; // Import the url_launcher package
 
 // pages
-import '../global_content/static_content/global_methods.dart';
 
 /// quick page which displays settings and other import info
 

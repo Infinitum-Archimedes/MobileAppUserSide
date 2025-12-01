@@ -4,10 +4,10 @@ import 'package:student_health_tracker/main.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 // pages
-import '../global_content/dynamic_content/database.dart';
-import '../global_content/static_content/custom_themes.dart';
-import '../global_content/static_content/global_methods.dart';
-import '../global_content/static_content/global_widgets.dart';
+import '../globals/database.dart';
+import '../globals/static/custom_themes.dart';
+import '../globals/static/global_methods.dart';
+import '../globals/static/global_widgets.dart';
 import 'home_page.dart';
 
 /*

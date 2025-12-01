@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:student_health_tracker/startup/welcome_page.dart';
 
 // pages
-import '../global_content/dynamic_content/database.dart';
-import '../global_content/static_content/static_pages/static_load.dart';
+import '../globals/database.dart';
+import '../globals/static/static_pages/static_load.dart';
 import 'home_page.dart';
 
 /*

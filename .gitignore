@@ -46,3 +46,7 @@ supabase/.env.local
 
 pubsec.lock
 pubspec.lock
+
+# pesky build files
+linux/flutter/*
+windows/flutter/*

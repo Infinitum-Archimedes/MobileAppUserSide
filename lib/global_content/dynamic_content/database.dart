@@ -28,9 +28,9 @@ class DataBase {
 		try {
 			await Supabase.initialize(
 				// url and anonkey of supabase db
-				url: 'https://cwuqeskcuzbzxxdkkgno.supabase.co',
+				url: 'https://ssafurcuoaffmzvmfiez.supabase.co',
 				anonKey:
-						'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN3dXFlc2tjdXpienh4ZGtrZ25vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzA3NjAyNjEsImV4cCI6MjA0NjMzNjI2MX0.ll5U0251lxqwQU8691ZHXPFnBO8otEQljVYtjvhGCFs',
+						'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNzYWZ1cmN1b2FmZm16dm1maWV6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ0MzY0OTUsImV4cCI6MjA4MDAxMjQ5NX0.FU5eF5oSVcJKARbTnb6aIP2OYT-kE2I2VrbFZ-P-pMw',
 			);
 			return false;
 		} catch (e) {

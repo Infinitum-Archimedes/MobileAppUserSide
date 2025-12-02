@@ -120,7 +120,7 @@ class _AccountState extends State<Account> {
                       child: FittedBox(
                         fit: BoxFit.scaleDown,
                         child: Text(
-                          profile['name'] ?? "Sparkli User",
+                          profile['name'] ?? "User",
                           maxLines: 1,
                           style: TextStyle(
                             fontSize: 25,

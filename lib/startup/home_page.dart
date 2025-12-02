@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 // pages
-import 'package:student_health_tracker/Account/account.dart';
 import 'package:student_health_tracker/Settings/settings.dart';
 import 'package:student_health_tracker/Samples/sample.dart';
 import 'package:student_health_tracker/notification_center/notification_center.dart';
@@ -12,6 +11,7 @@ import '../globals/static/global_widgets.dart';
 import 'package:student_health_tracker/notification_center/notification_page_router.dart';
 import 'package:student_health_tracker/map_page/map_page.dart';
 import 'package:student_health_tracker/chat/chat.dart';
+import 'package:student_health_tracker/account/account.dart';
 
 /*
 The main purpose of this class is to make the surrounding bars on the screen.
@@ -90,10 +90,8 @@ class HomePageState extends State<HomePage> {
               actions: [
                 IconButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          GlobalWidgets.swipePage(NotificationPageRouter(),
-                              title: 'Account'));
+                      Navigator.push(context,
+                          GlobalWidgets.swipePage(Account(), title: 'Account'));
                     },
                     icon: Icon(Icons.person_outline,
                         color: Theme.of(context).colorScheme.onSurface,

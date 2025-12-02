@@ -51,39 +51,39 @@ class MapPageDisplay extends StatefulWidget {
 
 class _MapPageDisplayState extends State<MapPageDisplay> {
   GoogleMapController? mapController;
-  
+
   // Initial camera position - Blacksburg, VA
   static const LatLng _center = LatLng(37.2296, -80.4139);
-  
+
   // Array of marker data with coordinates and descriptions
   final List<MarkerData> markerDataList = [
     MarkerData(
       id: 'marker_1',
       position: LatLng(37.2296, -80.4139),
-      description: 'Virginia Tech - Main Campus',
+      description: 'Covid-19 Reported',
     ),
     MarkerData(
       id: 'marker_2',
       position: LatLng(37.2275, -80.4231),
-      description: 'Downtown Blacksburg - Shopping and dining',
+      description: 'Allergy Reported',
     ),
     MarkerData(
       id: 'marker_3',
       position: LatLng(37.2244, -80.4214),
-      description: 'Blacksburg Municipal Park - Recreation area',
+      description: 'Fever Reported',
     ),
     MarkerData(
       id: 'marker_4',
       position: LatLng(37.2340, -80.4250),
-      description: 'Lane Stadium - Virginia Tech Football',
+      description: 'AIDS Reported',
     ),
     MarkerData(
       id: 'marker_5',
       position: LatLng(37.2308, -80.4187),
-      description: 'Cassell Coliseum - Basketball arena',
+      description: 'Fungal Infection',
     ),
   ];
-  
+
   Set<Marker> _markers = {};
 
   @override

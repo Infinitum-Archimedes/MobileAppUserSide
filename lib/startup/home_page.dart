@@ -66,7 +66,7 @@ class HomePageState extends State<HomePage> {
               // list of active pages
               children: [
                 const MapPage(),
-                StudentHealthChatApp(),
+                ChatScreen(),
               ],
             ),
             // Where Top Bar is defined

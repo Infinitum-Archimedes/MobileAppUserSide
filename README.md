@@ -48,3 +48,7 @@ The project is organized into several key directories and files to help you unde
 - **README.md**: This file provides an overview of the project, installation instructions, and other relevant information.
 
 To navigate the project effectively, familiarize yourself with these directories and files. You can use your IDE's file explorer to quickly access different parts of the project.
+
+### Context 
+
+The model for this is in a seperate repo and is run in a render server.

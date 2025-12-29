@@ -50,3 +50,6 @@ pubspec.lock
 # pesky build files
 linux/flutter/*
 windows/flutter/*
+
+# DART DEFINE
+DARTDEFINE.ENV

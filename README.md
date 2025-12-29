@@ -31,7 +31,11 @@ Before you begin, ensure you have the following installed on your machine:
 To run the application on your local machine, use the following command:
 ```flutter run```
 
-Can specify different things like devices using the ```-d``` flag, for example ```flutter run -d chrome```
+Ensure to run with keys for all the proper features you want to test:
+```
+flutter run --dart-define=GOOGLE_MAPS_KEY=SOME_VALUE --dart-define=OTHER_VAR=OTHER_VALUE
+``` 
+
 
 ## Navigating the Project
 

@@ -11,7 +11,15 @@ import '../../globals/account_service.dart';
 /*
 Account Page will be accessible by button in top right
 
-Current Account Page for DB based accounts
+Current Account Page for accounts in supabase
+
+only displays profile picture and users name
+
+Potential Additions
+- [ ] preferences / location preferences
+- [ ] account creation date 
+
+
  */
 
 class Account extends StatefulWidget {

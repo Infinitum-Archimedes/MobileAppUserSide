@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../globals/static/custom_themes.dart';
 
 /*
 Initially select notification preferences before going to notification center.
@@ -20,11 +19,13 @@ class _NotificationPreferencesState extends State<NotificationPreferences> {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
-      backgroundColor: CustomThemes.mainTheme.colorScheme.primaryContainer,
+      backgroundColor: colorScheme.primaryContainer,
       appBar: AppBar(
-        title: const Text('Notification Center'),
-        backgroundColor: CustomThemes.mainTheme.colorScheme.primary,
+        title: Text('Notification Settings', style: TextStyle(color: colorScheme.onSurfaceVariant)),
+        backgroundColor: colorScheme.surfaceContainer,
+        iconTheme: IconThemeData(color: colorScheme.onSurface),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -32,73 +33,103 @@ class _NotificationPreferencesState extends State<NotificationPreferences> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Information regarding common and\ncurrent health information.',
+              'Customize which notifications you receive about health information in your area.',
               style: TextStyle(
-                fontSize: 14,
-                color: CustomThemes.mainTheme.colorScheme.onSurface,
+                fontSize: 15,
+                color: colorScheme.onSurface,
+                height: 1.4,
               ),
             ),
             const SizedBox(height: 20),
             Container(
-              padding: const EdgeInsets.all(12),
+              padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
-                color: CustomThemes.mainTheme.colorScheme.secondaryContainer,
-                borderRadius: BorderRadius.circular(8),
+                color: colorScheme.secondaryContainer,
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(color: colorScheme.shadow.withOpacity(0.2), blurRadius: 4),
+                ],
               ),
               child: Row(
                 children: [
+                  Icon(Icons.location_on, color: colorScheme.secondary, size: 20),
+                  const SizedBox(width: 8),
                   Text(
                     'Location: ',
-                    style: TextStyle(fontWeight: FontWeight.w500, color: CustomThemes.mainTheme.colorScheme.onSurface),
+                    style: TextStyle(fontWeight: FontWeight.w600, color: colorScheme.onSecondary),
                   ),
                   Text(
                     'Blacksburg, VA',
                     style: TextStyle(
-                      color: CustomThemes.mainTheme.colorScheme.onSurfaceVariant,
+                      color: colorScheme.onSecondary,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
                 ],
               ),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 28),
             Text(
-              'General Information',
+              'Notification Types',
               style: TextStyle(
-                fontSize: 16,
+                fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: CustomThemes.mainTheme.colorScheme.onSurface,
+                fontFamily: 'Georama',
+                color: colorScheme.onSurface,
               ),
             ),
-            SwitchListTile(
-              title: const Text('General Notifications'),
+            const SizedBox(height: 12),
+            _buildSwitchTile(
+              context,
+              title: 'General Notifications',
+              subtitle: 'App updates and announcements',
               value: generalNotifications,
-              onChanged: (bool value) {
-                setState(() {
-                  generalNotifications = value;
-                });
-              },
+              onChanged: (value) => setState(() => generalNotifications = value),
             ),
-            SwitchListTile(
-              title: const Text('Health Updates'),
+            _buildSwitchTile(
+              context,
+              title: 'Health Updates',
+              subtitle: 'Disease outbreaks and health alerts',
               value: healthUpdates,
-              onChanged: (bool value) {
-                setState(() {
-                  healthUpdates = value;
-                });
-              },
+              onChanged: (value) => setState(() => healthUpdates = value),
             ),
-            SwitchListTile(
-              title: const Text('Location Alerts'),
+            _buildSwitchTile(
+              context,
+              title: 'Location Alerts',
+              subtitle: 'Health reports near your location',
               value: locationAlerts,
-              onChanged: (bool value) {
-                setState(() {
-                  locationAlerts = value;
-                });
-              },
+              onChanged: (value) => setState(() => locationAlerts = value),
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildSwitchTile(
+    BuildContext context, {
+    required String title,
+    required String subtitle,
+    required bool value,
+    required ValueChanged<bool> onChanged,
+  }) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return Container(
+      margin: const EdgeInsets.only(bottom: 8),
+      decoration: BoxDecoration(
+        color: colorScheme.surface,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(color: colorScheme.shadow.withOpacity(0.15), blurRadius: 3, offset: const Offset(0, 1)),
+        ],
+      ),
+      child: SwitchListTile(
+        title: Text(title, style: TextStyle(color: colorScheme.onSurface, fontWeight: FontWeight.w500)),
+        subtitle: Text(subtitle, style: TextStyle(color: colorScheme.onSurfaceVariant, fontSize: 13)),
+        value: value,
+        activeColor: colorScheme.primary,
+        onChanged: onChanged,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
     );
   }

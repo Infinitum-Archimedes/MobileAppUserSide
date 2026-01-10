@@ -102,50 +102,178 @@ class _AccountState extends State<Account> {
     final Map<String, dynamic> profile = AccountService.account;
 
     return Scaffold(
-      body: Column(
-        children: [
-          Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: mediaQuery.size.width * .05,
-            ),
-            margin: const EdgeInsets.symmetric(vertical: 8),
-            decoration: BoxDecoration(
-              color: colorScheme.primaryContainer,
-              boxShadow: [BoxShadow(color: colorScheme.shadow, blurRadius: 3)],
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: Avatar(imageUrl: _avatarUrl, onUpload: _onUpload),
+      backgroundColor: colorScheme.primaryContainer,
+      body: _loading
+          ? Center(
+              child: CircularProgressIndicator(color: colorScheme.primary),
+            )
+          : SingleChildScrollView(
+              child: Column(
+                children: [
+                  // Profile Header
+                  Container(
+                    width: double.infinity,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: mediaQuery.size.width * .05,
+                      vertical: 24,
                     ),
-                    Container(
-                      padding: const EdgeInsets.only(left: 15),
-                      child: FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: Text(
+                    decoration: BoxDecoration(
+                      color: colorScheme.surfaceContainer,
+                      boxShadow: [BoxShadow(color: colorScheme.shadow, blurRadius: 4)],
+                      borderRadius: const BorderRadius.only(
+                        bottomLeft: Radius.circular(24),
+                        bottomRight: Radius.circular(24),
+                      ),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Avatar(imageUrl: _avatarUrl, onUpload: _onUpload),
+                        ),
+                        const SizedBox(height: 12),
+                        Text(
                           profile['name'] ?? "User",
                           maxLines: 1,
                           style: TextStyle(
-                            fontSize: 25,
-                            fontWeight: FontWeight.w600,
-                            fontFamily: 'Inter',
+                            fontSize: 28,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Georama',
                             color: colorScheme.onSurface,
                           ),
                         ),
-                      ),
+                        const SizedBox(height: 8),
+                        Text(
+                          supabase.auth.currentUser?.email ?? 'Guest User',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: colorScheme.onSurfaceVariant,
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-                const SizedBox(height: 10),
-              ],
+                  ),
+                  const SizedBox(height: 24),
+                  // Account Options
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Account',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Georama',
+                            color: colorScheme.onSurface,
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        _buildAccountOption(
+                          context,
+                          icon: Icons.person_outline,
+                          title: 'Edit Profile',
+                          onTap: () {},
+                        ),
+                        _buildAccountOption(
+                          context,
+                          icon: Icons.security_outlined,
+                          title: 'Privacy Settings',
+                          onTap: () {},
+                        ),
+                        _buildAccountOption(
+                          context,
+                          icon: Icons.notifications_outlined,
+                          title: 'Notification Preferences',
+                          onTap: () {},
+                        ),
+                        const SizedBox(height: 24),
+                        Text(
+                          'Actions',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Georama',
+                            color: colorScheme.onSurface,
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        _buildAccountOption(
+                          context,
+                          icon: Icons.logout,
+                          title: 'Sign Out',
+                          isDestructive: false,
+                          onTap: () {
+                            // Sign out logic
+                          },
+                        ),
+                        _buildAccountOption(
+                          context,
+                          icon: Icons.delete_outline,
+                          title: 'Delete Account',
+                          isDestructive: true,
+                          onTap: () {
+                            // Delete account logic
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 30),
+                ],
+              ),
             ),
+    );
+  }
+
+  Widget _buildAccountOption(
+    BuildContext context, {
+    required IconData icon,
+    required String title,
+    required VoidCallback onTap,
+    bool isDestructive = false,
+  }) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+          decoration: BoxDecoration(
+            color: colorScheme.surface,
+            borderRadius: BorderRadius.circular(12),
+            boxShadow: [
+              BoxShadow(color: colorScheme.shadow.withOpacity(0.2), blurRadius: 4, offset: const Offset(0, 2)),
+            ],
           ),
-        ],
+          child: Row(
+            children: [
+              Icon(
+                icon,
+                color: isDestructive ? colorScheme.error : colorScheme.onSurface,
+                size: 24,
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: isDestructive ? colorScheme.error : colorScheme.onSurface,
+                  ),
+                ),
+              ),
+              Icon(
+                Icons.chevron_right,
+                color: colorScheme.onSurfaceVariant,
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

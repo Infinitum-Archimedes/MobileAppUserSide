@@ -1,8 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- TODO ADD KEY-->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgE9ZQCmwjcX5SShDH5TFEsMI10gU98IQ"></script>
+  <!-- Google Maps API - Replace YOUR_API_KEY with a valid key or use environment variable at build time -->
+  <!-- To use Advanced Markers, you also need a Map ID from Google Cloud Console -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmXWkl8SQqYH4nn_ytHl8LgefkV-vwV_Y&libraries=marker&callback=initMap" async defer></script>
+  <script>
+    function initMap() {
+      // Map initialization callback - required for async loading
+      console.log('Google Maps API loaded');
+    }
+  </script>
   <!--
     If you are serving your web app in a path other than the root, change the
     href value below to reflect the base path you are serving from.

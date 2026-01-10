@@ -11,39 +11,39 @@ class CustomThemes {
   /// main theme which is both the starting theme, and the theme for the opening pages of the app
   static ThemeData mainTheme = ThemeData(
     colorScheme: const ColorScheme(
-      // Button background, tile colors
-      primary: Color(0xffeef4ff), // Light lavender/blue for buttons
+      // Button background, tile colors - darker for better contrast
+      primary: Color(0xff5c6bc0), // Indigo for buttons (better visibility)
       // Button text color
-      onPrimary: Color(0xff000000), // Black for readability
+      onPrimary: Color(0xffffffff), // White for readability on primary
       // Primary background color
-      primaryContainer: Color(0xffffffff), // Clean white background
+      primaryContainer: Color(0xfff5f5f5), // Light gray background
       // Links and accent colors
-      secondary: Color(0xff6a5acd), // Medium purple for links and highlights
+      secondary: Color(0xff5e35b1), // Deep purple for links and highlights
       // Text color on secondary
-      onSecondary: Color(0xffffffff), // White text on secondary
+      onSecondary: Color(0xff1a1a1a), // Dark text on secondary containers
       // Secondary background color
       secondaryContainer: Color(0xffe8eaf6), // Slightly darker lavender for containers
       // Button outline or inactive button color
-      tertiary: Color(0xffdfe4fc), // Very light blue
+      tertiary: Color(0xffc5cae9), // Light indigo
       // Tertiary text color
-      onTertiary: Color(0xff000000), // Black for tertiary text
+      onTertiary: Color(0xff1a1a1a), // Dark for tertiary text
       // Appbar and navbar
       surface: Color(0xffffffff), // Pure white
       // Shadow color for elevated elements
-      shadow: Color(0xffd0d0d0), // Light gray for subtle shadows
+      shadow: Color(0xffbdbdbd), // Medium gray for visible shadows
       // Default text color
-      onSurface: Color(0xff000000), // Black for general text
+      onSurface: Color(0xff212121), // Near-black for general text
       // Decorations (rounded shapes)
-      surfaceContainer: Color(0xffeef4ff), // Same as button background
-      // Link text color
-      onSurfaceVariant: Color(0xff6a5acd), // Purple for links
-      error: Color(0xffff6f6f), // Light red for error
+      surfaceContainer: Color(0xfff0f4ff), // Light blue-gray for containers
+      // Link/secondary text color
+      onSurfaceVariant: Color(0xff424242), // Dark gray for secondary text
+      error: Color(0xffd32f2f), // Strong red for errors
       onError: Color(0xffffffff), // White for text on error
       brightness: Brightness.light,
     ),
     buttonTheme: const ButtonThemeData(
-      buttonColor: Color(0xffeef4ff), // Light blue for buttons
-      textTheme: ButtonTextTheme.primary, // Ensures button text matches the primary color
+      buttonColor: Color(0xff5c6bc0), // Indigo for buttons
+      textTheme: ButtonTextTheme.primary,
     ),
   );
 
@@ -129,23 +129,23 @@ class CustomThemes {
     ),
     "Dark": ThemeData(
       colorScheme: const ColorScheme(
-        primary: Color(0xff2a2a2a),
-        onPrimary: Color(0xffc5c5c5),
-        primaryContainer: Color(0xff565656),
-        secondary: Color(0xff484848),
-        onSecondary: Color(0xffa9a9a9),
-        secondaryContainer: Color(0xff6b6b6b),
-        tertiary: Colors.black,
-        onTertiary: Colors.white,
+        primary: Color(0xff7986cb), // Lighter indigo for dark mode
+        onPrimary: Color(0xff121212), // Dark text on primary
+        primaryContainer: Color(0xff1e1e1e), // Dark background
+        secondary: Color(0xffb39ddb), // Light purple for accents
+        onSecondary: Color(0xffe0e0e0), // Light text on secondary containers
+        secondaryContainer: Color(0xff424242), // Medium dark containers
+        tertiary: Color(0xff5c6bc0), // Indigo
+        onTertiary: Color(0xffffffff), // White text
         tertiaryContainer: Color(0xff2a2a2a),
-        surface: Color(0xff3a3a3a),
-        onSurface: Color(0xffbbbbbb),
-        shadow: Color(0xff313131),
-        surfaceContainer: Color(0xff313131),
-        onSurfaceVariant: Color(0xffcccccc),
-        error: Colors.transparent,
-        onError: Colors.transparent,
-        brightness: Brightness.light,
+        surface: Color(0xff2d2d2d), // Dark surface
+        onSurface: Color(0xffe0e0e0), // Light text on surfaces
+        shadow: Color(0xff000000), // Black shadows
+        surfaceContainer: Color(0xff383838), // Slightly lighter dark
+        onSurfaceVariant: Color(0xffb0b0b0), // Medium light text
+        error: Color(0xffef5350), // Red for errors
+        onError: Color(0xffffffff), // White text on error
+        brightness: Brightness.dark,
       ),
     ),
     "Aquamarine": ThemeData(

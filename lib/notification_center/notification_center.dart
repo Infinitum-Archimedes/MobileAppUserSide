@@ -41,19 +41,42 @@ class _NotificationCenterState extends State<NotificationCenter> {
 */
 	@override
 	Widget build(BuildContext context) {
+		final colorScheme = Theme.of(context).colorScheme;
 		return Scaffold(
+			backgroundColor: colorScheme.primaryContainer,
 			appBar: AppBar(
-				title: const Text('Notification Center'),
-				backgroundColor: Colors.blue,
+				title: Text('Notification Center', style: TextStyle(color: colorScheme.onSurfaceVariant)),
+				backgroundColor: colorScheme.surfaceContainer,
+				iconTheme: IconThemeData(color: colorScheme.onSurface),
 			),
 			body: notifications.isEmpty
-					? const Center(child: CircularProgressIndicator())
+					? Center(
+							child: Column(
+								mainAxisSize: MainAxisSize.min,
+								children: [
+									Icon(Icons.notifications_off_outlined, size: 64, color: colorScheme.onSurface.withOpacity(0.5)),
+									const SizedBox(height: 16),
+									Text(
+										'No notifications yet',
+										style: TextStyle(
+											fontSize: 18,
+											color: colorScheme.onSurface.withOpacity(0.7),
+										),
+									),
+								],
+							),
+						)
 					: ListView.builder(
+							padding: const EdgeInsets.all(12),
 							itemCount: notifications.length,
 							itemBuilder: (context, index) {
 								final notification = notifications[index];
 								return Card(
-									margin: const EdgeInsets.all(8.0),
+									margin: const EdgeInsets.only(bottom: 12),
+									color: colorScheme.surface,
+									elevation: 2,
+									shadowColor: colorScheme.shadow,
+									shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
 									child: Padding(
 										padding: const EdgeInsets.all(16.0),
 										child: Column(
@@ -61,22 +84,23 @@ class _NotificationCenterState extends State<NotificationCenter> {
 											children: [
 												Text(
 													notification['title'] ?? 'No Title',
-													style: const TextStyle(
+													style: TextStyle(
 														fontWeight: FontWeight.bold,
 														fontSize: 16,
+														color: colorScheme.onSurface,
 													),
 												),
 												const SizedBox(height: 8),
 												Text(
 													notification['message'] ?? 'No Message',
-													style: const TextStyle(fontSize: 14),
+													style: TextStyle(fontSize: 14, color: colorScheme.onSurface),
 												),
 												const SizedBox(height: 8),
 												Text(
 													notification['date'] != null
 															? notification['date'].toString()
 															: 'No Date',
-													style: const TextStyle(fontSize: 12, color: Colors.grey),
+													style: TextStyle(fontSize: 12, color: colorScheme.onSurfaceVariant),
 												),
 											],
 										),

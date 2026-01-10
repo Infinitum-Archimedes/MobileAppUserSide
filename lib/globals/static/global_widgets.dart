@@ -289,10 +289,10 @@ class GlobalWidgets{
                 title: Text(title ?? '',
                     style: TextStyle(
                         color:
-                            Theme.of(context).colorScheme.primary,
+                            Theme.of(context).colorScheme.onSurface,
                         fontFamily: 'Georama',
                         fontWeight: FontWeight.w700,
-                        fontSize: 25,
+                        fontSize: 22,
                         height: 0.85)),
               ),
               extendBodyBehindAppBar: title == null,

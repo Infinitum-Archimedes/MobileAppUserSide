@@ -6,33 +6,62 @@ class MapPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
-      appBar: AppBar(
-        title: ElevatedButton(
-          onPressed: () {
-            print('Top button clicked!');
-          },
-          style: ElevatedButton.styleFrom(
-            minimumSize: const Size.fromHeight(50),
-          ),
-          child: const Text('Location: Blacksburg, VA'),
-        ),
-      ),
+      backgroundColor: colorScheme.primaryContainer,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          const Text('Read Terms and Conditions'),
-          const SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () {
-              print('Click!');
-            },
-            style: ElevatedButton.styleFrom(
-              minimumSize: const Size.fromHeight(50),
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            decoration: BoxDecoration(
+              color: colorScheme.secondaryContainer,
+              border: Border(bottom: BorderSide(color: colorScheme.shadow, width: 1)),
             ),
-            child: const Text('Location: Blacksburg, VA'),
+            child: Row(
+              children: [
+                Icon(Icons.location_on, color: colorScheme.secondary, size: 20),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    'Location: Blacksburg, VA',
+                    style: TextStyle(
+                      color: colorScheme.onSecondary,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    // TODO: Implement location change
+                  },
+                  child: Text(
+                    'Change',
+                    style: TextStyle(color: colorScheme.secondary, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
+            ),
           ),
-          const SizedBox(height: 20),
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: colorScheme.surface,
+            ),
+            child: Center(
+              child: Text(
+                'Read Terms and Conditions',
+                style: TextStyle(
+                  color: colorScheme.secondary,
+                  fontWeight: FontWeight.w500,
+                  decoration: TextDecoration.underline,
+                ),
+              ),
+            ),
+          ),
           const Expanded(
             child: MapPageDisplay(),
           ),
@@ -109,16 +138,24 @@ class _MapPageDisplayState extends State<MapPageDisplay> {
   }
 
   void _showMarkerDialog(MarkerData data) {
+    final colorScheme = Theme.of(context).colorScheme;
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text(data.id),
-          content: Text(data.description),
+          backgroundColor: colorScheme.surface,
+          title: Text(
+            data.description,
+            style: TextStyle(color: colorScheme.onSurface, fontWeight: FontWeight.bold),
+          ),
+          content: Text(
+            'Health report in this area',
+            style: TextStyle(color: colorScheme.onSurface),
+          ),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text('Close'),
+              child: Text('Close', style: TextStyle(color: colorScheme.secondary)),
             ),
           ],
         );
@@ -141,6 +178,8 @@ class _MapPageDisplayState extends State<MapPageDisplay> {
       markers: _markers,
       myLocationButtonEnabled: true,
       mapType: MapType.normal,
+      // For web: Add your Map ID from Google Cloud Console to use Advanced Markers
+      // cloudMapId: 'YOUR_MAP_ID_HERE',
     );
   }
 }

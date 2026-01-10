@@ -133,25 +133,23 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
-      backgroundColor: const Color(0xFFE0E0E0),
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF5A55EA),
-        title: const Text('Health Assistant', style: TextStyle(color: Colors.white)),
-        centerTitle: true,
-        elevation: 0,
-      ),
+      backgroundColor: colorScheme.primaryContainer,
       body: SafeArea(
         child: Column(
           children: [
             Container(
               width: double.infinity,
-              padding: const EdgeInsets.all(10),
-              color: const Color(0xFFE9F0FF),
-              child: const Center(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: colorScheme.secondaryContainer,
+                border: Border(bottom: BorderSide(color: colorScheme.shadow, width: 1)),
+              ),
+              child: Center(
                 child: Text(
                   'Read Terms & Conditions',
-                  style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
+                  style: TextStyle(color: colorScheme.secondary, fontWeight: FontWeight.bold, fontSize: 14),
                 ),
               ),
             ),
@@ -170,16 +168,16 @@ class _ChatScreenState extends State<ChatScreen> {
                       padding: const EdgeInsets.all(16),
                       constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.78),
                       decoration: BoxDecoration(
-                        color: isUser ? const Color(0xFF8C85F4) : Colors.white,
+                        color: isUser ? colorScheme.primary : colorScheme.surface,
                         borderRadius: BorderRadius.circular(22),
-                        boxShadow: const [
-                          BoxShadow(color: Colors.black12, blurRadius: 8, offset: Offset(0, 3)),
+                        boxShadow: [
+                          BoxShadow(color: colorScheme.shadow.withOpacity(0.4), blurRadius: 8, offset: const Offset(0, 3)),
                         ],
                       ),
                       child: Text(
                         msg['text'],
                         style: TextStyle(
-                          color: isUser ? Colors.white : Colors.black87,
+                          color: isUser ? colorScheme.onPrimary : colorScheme.onSurface,
                           fontSize: 16,
                           height: 1.4,
                         ),
@@ -196,9 +194,9 @@ class _ChatScreenState extends State<ChatScreen> {
                 top: 12,
                 bottom: MediaQuery.of(context).viewInsets.bottom + 20,
               ),
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 10)],
+              decoration: BoxDecoration(
+                color: colorScheme.surfaceContainer,
+                boxShadow: [BoxShadow(color: colorScheme.shadow.withOpacity(0.3), blurRadius: 10)],
               ),
               child: Row(
                 children: [
@@ -206,10 +204,12 @@ class _ChatScreenState extends State<ChatScreen> {
                     child: TextField(
                       controller: _controller,
                       enabled: !_isLoading,
+                      style: TextStyle(color: colorScheme.onSurface),
                       decoration: InputDecoration(
                         hintText: "Describe your symptoms...",
+                        hintStyle: TextStyle(color: colorScheme.onSurface.withOpacity(0.6)),
                         filled: true,
-                        fillColor: Colors.grey[100],
+                        fillColor: colorScheme.surface,
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
                           borderSide: BorderSide.none,
@@ -222,10 +222,10 @@ class _ChatScreenState extends State<ChatScreen> {
                   const SizedBox(width: 12),
                   FloatingActionButton(
                     onPressed: _isLoading ? null : () => _sendMessage(_controller.text),
-                    backgroundColor: const Color(0xFF5A55EA),
+                    backgroundColor: colorScheme.primary,
                     child: _isLoading
-                        ? const SizedBox(width: 24, height: 24, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2.5))
-                        : const Icon(Icons.send, color: Colors.white),
+                        ? SizedBox(width: 24, height: 24, child: CircularProgressIndicator(color: colorScheme.onPrimary, strokeWidth: 2.5))
+                        : Icon(Icons.send, color: colorScheme.onPrimary),
                   ),
                 ],
               ),

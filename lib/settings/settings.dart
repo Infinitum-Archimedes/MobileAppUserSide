@@ -19,15 +19,17 @@ class Settings extends StatefulWidget {
 
 class _SettingsState extends State<Settings> {
   void _showPopup(String title) {
+    final colorScheme = Theme.of(context).colorScheme;
     showDialog(
       context: context,
       builder: (_) => AlertDialog(
-        title: Text(title),
-        content: const Text("Coming Soon"),
+        backgroundColor: colorScheme.surface,
+        title: Text(title, style: TextStyle(color: colorScheme.onSurface)),
+        content: Text("Coming Soon", style: TextStyle(color: colorScheme.onSurface)),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text("Close"),
+            child: Text("Close", style: TextStyle(color: colorScheme.secondary)),
           ),
         ],
       ),
@@ -35,22 +37,28 @@ class _SettingsState extends State<Settings> {
   }
 
   Widget _buildSettingButton(String text) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 7),
       child: GestureDetector(
         onTap: () => _showPopup(text),
         child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 12),
+          padding: const EdgeInsets.symmetric(vertical: 14),
           decoration: BoxDecoration(
-              border: Border.all(color: Colors.black),
-              borderRadius: BorderRadius.circular(15)),
+            color: colorScheme.surface,
+            border: Border.all(color: colorScheme.primary, width: 1.5),
+            borderRadius: BorderRadius.circular(15),
+            boxShadow: [
+              BoxShadow(color: colorScheme.shadow.withOpacity(0.3), blurRadius: 4, offset: const Offset(0, 2)),
+            ],
+          ),
           alignment: Alignment.center,
           child: Text(
             text,
-            style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              decoration: TextDecoration.underline,
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+              color: colorScheme.onSurface,
             ),
           ),
         ),
@@ -59,6 +67,7 @@ class _SettingsState extends State<Settings> {
   }
 
   Widget _buildNotificationButton() {
+    final colorScheme = Theme.of(context).colorScheme;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 7),
       child: GestureDetector(
@@ -70,20 +79,22 @@ class _SettingsState extends State<Settings> {
           );
         },
         child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 12),
+          padding: const EdgeInsets.symmetric(vertical: 14),
           decoration: BoxDecoration(
-            border: Border.all(color: Colors.deepPurple),
+            border: Border.all(color: colorScheme.secondary, width: 1.5),
             borderRadius: BorderRadius.circular(15),
-            color: Colors.deepPurple[50],
+            color: colorScheme.secondaryContainer,
+            boxShadow: [
+              BoxShadow(color: colorScheme.shadow.withOpacity(0.3), blurRadius: 4, offset: const Offset(0, 2)),
+            ],
           ),
           alignment: Alignment.center,
-          child: const Text(
+          child: Text(
             "Notification Center",
             style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              decoration: TextDecoration.underline,
-              color: Colors.deepPurple,
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+              color: colorScheme.onSecondary,
             ),
           ),
         ),
@@ -93,14 +104,20 @@ class _SettingsState extends State<Settings> {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: colorScheme.primaryContainer,
       body: ListView(
         children: [
           // Top Bar
           Container(
             height: 80,
-            color: Colors.deepPurpleAccent,
+            decoration: BoxDecoration(
+              color: colorScheme.surfaceContainer,
+              boxShadow: [
+                BoxShadow(color: colorScheme.shadow, blurRadius: 4),
+              ],
+            ),
           ),
           const SizedBox(height: 20),
 
@@ -117,8 +134,9 @@ class _SettingsState extends State<Settings> {
                           style: TextStyle(
                               fontSize: 32,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black)),
-                      SizedBox(height: 5),
+                              fontFamily: 'Georama',
+                              color: colorScheme.onSurface)),
+                      const SizedBox(height: 8),
                       GestureDetector(
                         onTap: () async {
                           final url = Uri.parse('https://docs.flutter.dev/tos');
@@ -128,7 +146,7 @@ class _SettingsState extends State<Settings> {
                           'Read Terms and Conditions',
                           style: TextStyle(
                               fontSize: 16,
-                              color: Colors.lightBlue,
+                              color: colorScheme.secondary,
                               fontWeight: FontWeight.w500,
                               decoration: TextDecoration.underline),
                         ),
@@ -150,8 +168,7 @@ class _SettingsState extends State<Settings> {
           _buildSettingButton("Privacy"),
           _buildSettingButton("Display"),
           _buildSettingButton("Passcode/Login"),
-          _buildSettingButton("Location"),
-          _buildNotificationButton(), 
+          _buildNotificationButton(),
 
           const SizedBox(height: 30),
         ],
